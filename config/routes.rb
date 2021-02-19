@@ -12,6 +12,6 @@ Rails.application.routes.draw do
   post "/finditem", to: "user_foods#find_item"
   get "foods", to: "foods#index"
   post "/userfoods", to: "user_foods#create"
-
+  get "articles", to: "articles#index"
 
 end
