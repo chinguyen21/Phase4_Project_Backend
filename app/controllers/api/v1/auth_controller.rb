@@ -4,7 +4,7 @@ class Api::V1::AuthController < ApplicationController
     user = User.find_by(email: user_login_params[:email])
     if user && user.authenticate(user_login_params[:password])
       token = JWT.encode({user_id: user.id}, "chi_avelon")
-      render json: {user: user, token: token}, status: :accepted
+      render json: {user: UserSerializer.new(user).to_serialized_json, token: token}, status: :accepted
     else 
       render json: {message: ["Invalid username or password"]}, status: :unauthorized
     end
